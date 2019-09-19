@@ -2,11 +2,11 @@ package handlers
 
 import (
 	"fmt"
-	"net/http"
+	"github.com/valyala/fasthttp"
 )
 
-func NewHelloHandler(appName string) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Welcome to %s!", appName)
+func NewHelloHandler(appName string) func(ctx *fasthttp.RequestCtx) {
+	return func(ctx *fasthttp.RequestCtx) {
+		fmt.Fprintf(ctx, "Welcome to %s!", appName)
 	}
 }
